@@ -1,4 +1,5 @@
 # -*- Mode: Python -*- vi:si:et:sw=4:sts=4:ts=4:syntax=python
+from cerbero.utils import git
 
 class Recipe(recipe.Recipe):
     name = 'dbus-python'
@@ -35,3 +36,13 @@ class Recipe(recipe.Recipe):
         'include/dbus-1.0/dbus/dbus-python.h',
         'lib/pkgconfig/dbus-python.pc'
         ]
+
+    def fetch(self):
+        if not os.path.exists(self.repo_dir):
+            git.init(self.repo_dir)
+        for remote, url in self.remotes.iteritems():
+            git.add_remote(self.repo_dir, remote, url)
+        # fetch remote branches
+        git.fetch(self.repo_dir, fail=False)
+        commit = self.commit
+        git.checkout(self.repo_dir, commit)

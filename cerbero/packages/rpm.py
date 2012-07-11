@@ -158,7 +158,9 @@ class RPMPackager(LinuxPackager):
     def prepare(self, tarname, tmpdir, packagedir, srcdir):
         try:
             runtime_files = self._files_list(PackageType.RUNTIME)
+            self.package.has_runtime_package = True
         except EmptyPackageError:
+            self.package.has_runtime_package = False
             runtime_files = ''
 
         if self.devel:
@@ -170,9 +172,7 @@ class RPMPackager(LinuxPackager):
             template = META_SPEC_TPL
             requires = \
                 self._get_meta_requires(PackageType.RUNTIME)
-            self.package.has_devel_package = True
         else:
-            self.package.has_devel_package = bool(devel_files)
             template = SPEC_TPL
             requires = self._get_requires(PackageType.RUNTIME)
 
@@ -258,16 +258,18 @@ class RPMPackager(LinuxPackager):
         args = {}
         args['summary'] = 'Development files for %s' % self.package.name
         args['description'] = args['summary']
-        if isinstance(self.package, MetaPackage):
-            args['requires'] = self._get_meta_requires(PackageType.DEVEL)
-        else:
-            args['requires'] = self._get_requires(PackageType.DEVEL)
         args['name'] = self.package.name
         args['p_prefix'] = self.package_prefix
         try:
             devel = DEVEL_TPL % self._files_list(PackageType.DEVEL)
         except EmptyPackageError:
             devel = ''
+        if isinstance(self.package, MetaPackage):
+            self.package.has_devel_package = True
+            args['requires'] = self._get_meta_requires(PackageType.DEVEL)
+        else:
+            self.package.has_devel_package = bool(devel)
+            args['requires'] = self._get_requires(PackageType.DEVEL)
         return DEVEL_PACKAGE_TPL % args, devel
 
 

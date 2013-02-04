@@ -5,6 +5,7 @@ class Recipe(recipe.Recipe):
     version = '0.15.1b'
     licenses = [License.GPLv2]
 
+    patches = ['001-mips_removal_h_constraint.patch']
     files_libs = ['libmad']
     files_devel = ['include/mad.h']
 

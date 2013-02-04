@@ -61,7 +61,7 @@ GSTREAMER_ANDROID_SO          := $(GSTREAMER_BUILD_DIR)/lib$(GSTREAMER_ANDROID_M
 GSTREAMER_ANDROID_C           := $(GSTREAMER_BUILD_DIR)/$(GSTREAMER_ANDROID_MODULE_NAME).c
 GSTREAMER_ANDROID_C_IN        := $(GSTREAMER_NDK_BUILD_PATH)/gstreamer_android.c.in
 GSTREAMER_DEPS                := $(GSTREAMER_EXTRA_DEPS) gstreamer-0.10
-GSTREAMER_LD                  := -fuse-ld=gold
+GSTREAMER_LD                  := -fuse-ld=bfd
 
 ################################
 #  NDK Build Prebuilt library  #

@@ -149,6 +149,7 @@ class Recipe(custom.GStreamerStatic):
                 ' --disable-cdaudio '
         if self.config.target_platform == Platform.ANDROID:
             self.append_env['CXXFLAGS'] = ' -DST_NO_EXCEPTION_HANDLING=1 '
+            self.append_env['LDFLAGS'] = ' -Wl,-rpath -Wl,' + os.path.join(self.config.prefix, 'lib')
             self.configure_options += ' --disable-dccp'
             for d in ['libdvdnav']:
                 self.deps.remove(d)

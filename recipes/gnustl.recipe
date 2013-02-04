@@ -31,6 +31,8 @@ class Recipe(recipe.Recipe):
             stl_libdir = os.path.join(stl_prefix, 'libs', 'x86')
         elif self.config.target_arch == Architecture.ARMv7:
             stl_libdir = os.path.join(stl_prefix, 'libs', 'armeabi-v7a')
+        elif self.config.target_arch == Architecture.MIPS:
+            stl_libdir = os.path.join(stl_prefix, 'libs', 'mips')
         else:
             stl_libdir = os.path.join(stl_prefix, 'libs', 'armeabi')
         libdir = os.path.join(self.config.prefix, 'lib')

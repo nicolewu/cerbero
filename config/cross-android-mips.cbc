@@ -1,0 +1,10 @@
+import os
+from cerbero.config import Platform, Architecture, Distro, DistroVersion
+
+target_platform = Platform.ANDROID
+target_distro = Distro.ANDROID
+target_distro_version = DistroVersion.ANDROID_ICE_CREAM_SANDWICH
+target_arch = Architecture.MIPS
+
+host = "mipsel-linux-android"
+#variants = ['nodebug']

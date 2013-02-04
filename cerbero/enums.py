@@ -33,6 +33,7 @@ class Architecture:
     UNIVERSAL = 'universal'
     ARM = 'arm'
     ARMv7 = 'armv7'
+    MIPS = 'mips'
 
 
 class Distro:

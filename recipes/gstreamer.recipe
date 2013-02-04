@@ -55,6 +55,7 @@ class Recipe(recipe.Recipe):
             self.configure_options += ' --disable-gtk-doc'
 
         if self.config.target_platform == Platform.ANDROID:
+            self.append_env['LDFLAGS'] = ' -Wl,-rpath -Wl,' + os.path.join(self.config.prefix, 'lib')
             self.make = '%s libcheckinternal_la_LIBADD=""' % self.make
 
         if self.config.variants.nodebug:

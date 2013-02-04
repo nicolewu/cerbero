@@ -198,6 +198,10 @@ class Git (GitCache):
     Source handler for git repositories
     '''
 
+    patches = []
+    strip = 1
+
+
     def __init__(self):
         GitCache.__init__(self)
         if self.commit is None:
@@ -225,6 +229,12 @@ class Git (GitCache):
 
         # checkout the current version
         git.local_checkout(self.build_dir, self.repo_dir, self.commit)
+
+        for patch in self.patches:
+            if not os.path.isabs(patch):
+                patch = self.relative_path(patch)
+            shell.apply_patch(patch, self.build_dir, self.strip)
+
         return True
 
 

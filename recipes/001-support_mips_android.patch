@@ -1,0 +1,11 @@
+diff -ur libvpx-v1.1.0.orig/configure libvpx-v1.1.0/configure
+--- libvpx-v1.1.0.orig/configure	2013-01-30 18:51:04.800086536 +0800
++++ libvpx-v1.1.0/configure	2013-01-30 18:46:09.906644884 +0800
+@@ -97,6 +97,7 @@
+ all_platforms="${all_platforms} armv7-linux-gcc"     #neon Cortex-A8
+ all_platforms="${all_platforms} armv7-none-rvct"     #neon Cortex-A8
+ all_platforms="${all_platforms} mips32-linux-gcc"
++all_platforms="${all_platforms} mipsel-android-gcc"
+ all_platforms="${all_platforms} ppc32-darwin8-gcc"
+ all_platforms="${all_platforms} ppc32-darwin9-gcc"
+ all_platforms="${all_platforms} ppc32-linux-gcc"

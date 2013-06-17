@@ -25,6 +25,8 @@ class Recipe(recipe.Recipe):
         if self.config.target_platform == Platform.DARWIN:
             self.autoreconf = True
             self.configure_options += '--without-x11 '
+        if self.config.target_platform == Platform.ANDROID:
+            self.autoreconf = True
 
     def post_install (self):
         if self.config.platform == Platform.WINDOWS and\
